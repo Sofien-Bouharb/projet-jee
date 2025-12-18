@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+  version="5.0">
+  <display-name>EventSpaceReservation</display-name>
+  
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>com.eventspace.filter.CharacterEncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>com.eventspace.controller.AuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/auth</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RoomServlet</servlet-name>
+    <servlet-class>com.eventspace.controller.RoomServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomServlet</servlet-name>
+    <url-pattern>/rooms</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReservationServlet</servlet-name>
+    <servlet-class>com.eventspace.controller.ReservationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationServlet</servlet-name>
+    <url-pattern>/reservations</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.eventspace.controller.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -16,13 +16,20 @@ public class RoomServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
+        String search = request.getParameter("search");
+        String type = request.getParameter("type");
+
+        java.util.List<Salle> rooms;
+        if (search != null && !search.trim().isEmpty()) {
+            rooms = roomService.searchRooms(search);
+        } else if (type != null && !type.trim().isEmpty()) {
+            rooms = roomService.getRoomsByType(type);
+        } else {
+            rooms = roomService.getAllRooms();
         }
 
-        request.setAttribute("rooms", roomService.getAllRooms());
+        request.setAttribute("rooms", rooms);
+        request.setAttribute("roomTypes", roomService.getAllRoomTypes());
         request.getRequestDispatcher("rooms.jsp").forward(request, response);
     }
 
@@ -49,6 +56,17 @@ public class RoomServlet extends HttpServlet {
         } else if ("delete".equals(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             roomService.deleteRoom(id);
+            response.sendRedirect("rooms");
+        } else if ("edit".equals(action)) {
+            Salle s = new Salle();
+            s.setId(Integer.parseInt(request.getParameter("id")));
+            s.setNom(request.getParameter("nom"));
+            s.setType(request.getParameter("type"));
+            s.setCapacite(Integer.parseInt(request.getParameter("capacite")));
+            s.setLocalisation(request.getParameter("localisation"));
+            s.setDescription(request.getParameter("description"));
+            s.setEquipements(request.getParameter("equipements"));
+            roomService.updateRoom(s);
             response.sendRedirect("rooms");
         }
     }

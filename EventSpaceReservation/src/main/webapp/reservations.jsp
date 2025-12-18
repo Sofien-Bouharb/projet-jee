@@ -46,7 +46,7 @@
                                 <input type="hidden" name="action" value="cancel">
                                 <input type="hidden" name="id" value="${res.id}">
                                 <button type="submit" class="btn btn-outline-danger btn-sm"
-                                    onclick="return confirm('Annuler cette rÃ©servation ?')">Annuler</button>
+                                    onclick="return confirm('Annuler cette réservation ?')">Annuler</button>
                             </form>
                         </c:if>
                     </td>

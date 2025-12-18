@@ -15,11 +15,27 @@ public class RoomService {
         return roomDAO.findById(id);
     }
 
+    public List<Salle> searchRooms(String keyword) {
+        return roomDAO.search(keyword);
+    }
+
     public void createRoom(Salle salle) {
         roomDAO.create(salle);
     }
 
     public void deleteRoom(int id) {
         roomDAO.delete(id);
+    }
+
+    public List<Salle> getRoomsByType(String type) {
+        return roomDAO.findByType(type);
+    }
+
+    public List<String> getAllRoomTypes() {
+        return roomDAO.findAllTypes();
+    }
+
+    public void updateRoom(Salle salle) {
+        roomDAO.update(salle);
     }
 }
